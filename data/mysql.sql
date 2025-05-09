@@ -160,10 +160,15 @@ VALUES ('user'),
 
 -- Insert Admin User
 INSERT INTO `users` (`username`, `first_name`, `last_name`, `phone`, `email`, `password`)
-VALUES ('admin', 'Admin', 'User', '1234567890', 'admin@admin.admin',
-        '$2y$10$cLPM3vuNrGruKRNhsUxote7M4HBkfRxa8k7IUapYyHVa0MYk4T4sW');
--- username: admin, password: secret1
+VALUES ('admin', 'Admin', 'User', '1234567890', 'admin@admin.admin','$2y$10$cLPM3vuNrGruKRNhsUxote7M4HBkfRxa8k7IUapYyHVa0MYk4T4sW'),
+       ('firstlogin', 'First', 'Login', '1234567890', 'first@login.com', '$2y$10$cLPM3vuNrGruKRNhsUxote7M4HBkfRxa8k7IUapYyHVa0MYk4T4sW'),
+       ('matt', 'Matt', 'Mars', '1234567890', 'mars@mars.com', '$2y$10$cLPM3vuNrGruKRNhsUxote7M4HBkfRxa8k7IUapYyHVa0MYk4T4sW');
 
 -- Assign Admin Role
 INSERT INTO `user_roles` (`user_id`, `role_id`)
 VALUES (1, 3);
+VALUES (2, 3);
+VALUES (3, 1);
+
+INSERT INTO `password_resets` (`user_id`, `token`, `expires_at`)
+VALUES (1,'1',2028-05-08 20:27:54)

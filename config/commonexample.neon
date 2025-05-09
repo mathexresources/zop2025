@@ -10,5 +10,5 @@ application:
 
 database:
 	dsn: 'mysql:host=localhost;dbname=zop2025'
-	user: zop2025
-	password: zop2025
+	user:
+	password:
