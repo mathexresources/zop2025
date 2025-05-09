@@ -1,0 +1,53 @@
+{block content}
+    <div class="py-10 px-4">
+        <div class="max-w-3xl mx-auto bg-white shadow-lg rounded-2xl p-8">
+            <div class="flex items-center space-x-6 mb-6">
+                <div class="w-20 h-20 rounded-full bg-blue-500 flex items-center justify-center text-white text-2xl font-bold">
+                    {=substr($profile->first_name, 0, 1)}{=substr($profile->last_name, 0, 1)}
+                </div>
+                <div>
+                    <h1 class="text-2xl font-semibold text-gray-800">
+                        {$profile->first_name} {$profile->last_name}
+                    </h1>
+                    <p class="text-sm text-gray-500">Role(s): <span class="text-blue-600">{implode(', ', $profile->roles)}</span></p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-gray-700">
+                <div>
+                    <p class="font-medium text-gray-600">Username</p>
+                    <p class="bg-gray-50 p-3 rounded-lg">{$profile->username}</p>
+                </div>
+                <div>
+                    <p class="font-medium text-gray-600">Email</p>
+                    <p class="bg-gray-50 p-3 rounded-lg">{$profile->email}</p>
+                </div>
+                <div>
+                    <p class="font-medium text-gray-600">Phone</p>
+                    <p class="bg-gray-50 p-3 rounded-lg">{$profile->phone}</p>
+                </div>
+                <div>
+                    <p class="font-medium text-gray-600">Account Created</p>
+                    <p class="bg-gray-50 p-3 rounded-lg">
+                        {$profile->created_at|date:'j. n. Y, H:i'}
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-8 text-right" n:if="$isAdmin || $isSelf">
+                <a n:href="User:edit $profile->id" class="inline-block px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                    Edit Profile
+                </a>
+                <a n:if="$isSelf" n:href="User:changePassword" class="inline-block px-5 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
+                    Change Password
+                </a>
+                <a n:if="!$isSelf" n:href="User:resetPassword $profile->id" class="inline-block px-5 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition">
+                    Reset password link
+                </a>
+                <a n:if="$isAdmin && !in_array('admin', $profile->roles)" n:href="User:delete $profile->id" class="inline-block px-5 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition">
+                    Delete Account
+                </a>
+            </div>
+        </div>
+    </div>
+{/block}

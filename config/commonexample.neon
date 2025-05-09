@@ -1,0 +1,14 @@
+# Application parameters and settings. See https://doc.nette.org/configuring
+
+parameters:
+
+
+application:
+	# Presenter mapping pattern
+	mapping: App\Presentation\*\**Presenter
+
+
+database:
+	dsn: 'mysql:host=localhost;dbname=zop2025'
+	user: zop2025
+	password: zop2025

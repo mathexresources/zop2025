@@ -1,0 +1,45 @@
+{block content}
+    <div class="bg-gray-100 p-6">
+        <div class="max-w-5xl mx-auto">
+            <h1 class="text-3xl font-bold text-gray-800 mb-6">User Dashboard</h1>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <a href="{link Dashboard:inventory}" class="group block bg-white rounded-lg shadow hover:shadow-md transition p-6 border border-gray-200 hover:border-blue-500">
+                    <div class="text-blue-600 group-hover:text-blue-800 text-2xl mb-2">📥</div>
+                    <h2 class="text-lg font-semibold text-gray-800 group-hover:text-blue-800">Inventory</h2>
+                    <p class="text-sm text-gray-500 mt-1">View the inventory</p>
+                </a>
+
+{*                <a href="{link Dashboard:default}" class="group block bg-white rounded-lg shadow hover:shadow-md transition p-6 border border-gray-200 hover:border-blue-500">*}
+{*                    <div class="text-blue-600 group-hover:text-blue-800 text-2xl mb-2">🔁</div>*}
+{*                    <h2 class="text-lg font-semibold text-gray-800 group-hover:text-blue-800">Move item</h2>*}
+{*                    <p class="text-sm text-gray-500 mt-1">Transfer between warehouses</p>*}
+{*                </a>*}
+
+                <a href="{link Dashboard:items}" class="group block bg-white rounded-lg shadow hover:shadow-md transition p-6 border border-gray-200 hover:border-blue-500">
+                    <div class="text-blue-600 group-hover:text-blue-800 text-2xl mb-2">📦</div>
+                    <h2 class="text-lg font-semibold text-gray-800 group-hover:text-blue-800">Items</h2>
+                    <p class="text-sm text-gray-500 mt-1">Create new item types</p>
+                </a>
+
+                <a href="{link Dashboard:categories}" class="group block bg-white rounded-lg shadow hover:shadow-md transition p-6 border border-gray-200 hover:border-blue-500">
+                    <div class="text-blue-600 group-hover:text-blue-800 text-2xl mb-2">🗂️</div>
+                    <h2 class="text-lg font-semibold text-gray-800 group-hover:text-blue-800">Item categories</h2>
+                    <p class="text-sm text-gray-500 mt-1">Manage item categories</p>
+                </a>
+
+                <a href="{link Dashboard:warehouses}" class="group block bg-white rounded-lg shadow hover:shadow-md transition p-6 border border-gray-200 hover:border-blue-500">
+                    <div class="text-blue-600 group-hover:text-blue-800 text-2xl mb-2">🏬</div>
+                    <h2 class="text-lg font-semibold text-gray-800 group-hover:text-blue-800">Warehouses</h2>
+                    <p class="text-sm text-gray-500 mt-1">Storage locations</p>
+                </a>
+
+                <a href="{link Dashboard:scanner}" class="group block bg-white rounded-lg shadow hover:shadow-md transition p-6 border border-gray-200 hover:border-blue-500">
+                    <div class="text-blue-600 group-hover:text-blue-800 text-2xl mb-2">📷</div>
+                    <h2 class="text-lg font-semibold text-gray-800 group-hover:text-blue-800">Scanner mode</h2>
+                    <p class="text-sm text-gray-500 mt-1">Use barcode scanner</p>
+                </a>
+            </div>
+        </div>
+    </div>
+{/block}

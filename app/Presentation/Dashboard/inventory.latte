@@ -1,0 +1,75 @@
+{import ../form-tailwind.latte}
+
+{block content}
+    <div class="p-6 space-y-6">
+
+        <div class="flex items-center justify-between">
+            <h2 class="text-2xl font-bold">Inventory</h2>
+        </div>
+
+        {* Filter Form *}
+        <div class="bg-white p-6 rounded-lg shadow">
+                <h3 class="text-lg font-semibold mb-4">Filter Items</h3>
+
+                {form filter}
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div>
+                            <label n:name="warehouse" class="block text-sm font-medium text-gray-700 mb-1">Warehouse</label>
+                            <select n:name="warehouse" class="w-full border border-gray-300 rounded-md p-2 text-sm focus:ring focus:ring-blue-200">
+                                <option value="all" selected>Select a warehouse</option>
+                                {foreach $warehouses as $warehouse}
+                                    <option value="{$warehouse->id}" {if $warehouse->id === $selectedWarehouse}selected{/if}>{$warehouse->name}</option>
+                                {/foreach}
+                            </select>
+                        </div>
+
+                        <div>
+                            <label n:name="category" class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                            <select n:name="category" class="w-full border border-gray-300 rounded-md p-2 text-sm focus:ring focus:ring-blue-200">
+                                <option value="all" selected>Select a category</option>
+                                {foreach $categories as $category}
+                                    <option value="{$category->id}" {if $category->id === $selectedCategory}selected{/if}>{$category->name}</option>
+                                {/foreach}
+                            </select>
+                        </div>
+
+                        <div>
+                            <label n:name="item" class="block text-sm font-medium text-gray-700 mb-1">Item</label>
+                            <select n:name="item" class="w-full border border-gray-300 rounded-md p-2 text-sm focus:ring focus:ring-blue-200">
+                                <option value="all" selected>Select an item</option>
+                                {foreach $itemsList as $item}
+                                    <option value="{$item->id}" {if $item->id === $selectedItem}selected{/if}>{$item->name}</option>
+                                {/foreach}
+                            </select>
+                        </div>
+
+                        <div class="flex items-end">
+                            <button n:name="filter" class="w-full bg-blue-600 text-white font-semibold py-2 rounded-md hover:bg-blue-700 transition">
+                                Filter
+                            </button>
+                        </div>
+                    </div>
+                {/form}
+        </div>
+
+        {* Items List *}
+        <div>
+            <h3 class="text-xl font-semibold mb-4">Available Items</h3>
+
+            {if count($items) > 0}
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    {foreach $items as $item}
+                        <a  class="block p-4 bg-white rounded-lg shadow hover:shadow-md transition border border-gray-200 hover:border-blue-400">
+                            <h4 class="text-lg font-semibold text-gray-800 mb-1">{$item['item_name']}</h4>
+                            <p class="text-sm text-gray-600">Quantity: <strong>{$item['quantity']}</strong></p>
+                            <p class="text-xs text-gray-400 mt-2">ID: {$item['id']}</p>
+                        </a>
+                    {/foreach}
+                </div>
+            {else}
+                <p class="text-gray-500 italic">No items match the selected filters.</p>
+            {/if}
+        </div>
+    </div>
+
+{/block}

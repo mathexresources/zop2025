@@ -1,0 +1,19 @@
+{block content}
+    <div class="max-w-md mx-auto mt-10 bg-white shadow-md rounded-lg p-6">
+        <h1 class="text-xl font-semibold mb-4">Reset Your Password</h1>
+        {form recoverForm}
+            <input type="hidden" n:name="token" value="{$resetToken}" />
+            <div class="mb-4">
+                <label n:name="password" class="block text-sm font-medium">New Password</label>
+                <input n:name="password" class="form-input w-full mt-1 rounded" />
+                <div class="text-sm text-red-600">{inputError password}</div>
+            </div>
+            <div class="mb-4">
+                <label n:name="password2" class="block text-sm font-medium">Confirm Password</label>
+                <input n:name="password2" class="form-input w-full mt-1 rounded" />
+                <div class="text-sm text-red-600">{inputError password2}</div>
+            </div>
+            <button n:name="save" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Reset Password</button>
+        {/form}
+    </div>
+{/block}

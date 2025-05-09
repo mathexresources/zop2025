@@ -1,0 +1,32 @@
+{import ../form-tailwind.latte}
+
+{block content}
+    <div class="max-w-2xl mx-auto mt-10">
+        <h1 class="text-3xl font-semibold mb-6">Manage Users</h1>
+
+        <a href="{plink User:addRole}"
+           class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 mb-4 inline-block">Add User</a>
+
+        <table class="min-w-full bg-white dark:bg-gray-800 shadow rounded">
+            <thead>
+            <tr class="text-left border-b dark:border-gray-700">
+                <th class="px-4 py-2">Id</th>
+                <th class="px-4 py-2">User</th>
+            </tr>
+            </thead>
+            <tbody>
+            {foreach $users as $usr}
+                <tr class="border-b dark:border-gray-700">
+                    <td class="px-4 py-2">{$usr->id}</td>
+                    <td class="px-4 py-2 flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-blue-500 flex items-center justify-center text-white font-bold">
+                            {=substr($usr->first_name, 0, 1)}{=substr($usr->last_name, 0, 1)}
+                        </div>
+                        <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline" n:href="User:profile $usr->username">{$usr->first_name} {$usr->last_name}</a>
+                    </td>
+                </tr>
+            {/foreach}
+            </tbody>
+        </table>
+    </div>
+{/block}

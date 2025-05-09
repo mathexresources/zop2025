@@ -1,0 +1,67 @@
+{* Generic form template for Tailwind CSS *}
+
+{define form, $name}
+    <form n:name=$name class="space-y-6">
+        {* List for form-level error messages *}
+	<ul class="bg-red-100 text-red-800 border border-red-300 p-4 rounded-md list-disc list-inside" n:ifcontent>
+                <li n:foreach="$form->ownErrors as $error">{$error}</li>
+	</ul>
+
+	{include controls $form->getControls()}
+    </form>
+{/define}
+
+
+{define local controls, array $controls}
+    <div n:foreach="$controls as $control"
+		n:if="!$control->getOption(rendered) && $control->getOption(type) !== hidden"
+		n:class="$control->required ? 'required', $control->error ? 'text-red-600'">
+
+        <div class="mb-4">
+            {* Label *}
+			<label class="block text-sm font-medium text-gray-700 mb-1" n:ifcontent>
+                    {label $control /}
+			</label>
+
+			{include control $control}
+
+			{if $control->getOption(type) === button}
+                <div class="mt-2 flex gap-2">
+                    {while $iterator->nextValue?->getOption(type) === button}
+                        {input $iterator->nextValue class => "px-4 py-2 rounded-md bg-gray-200 hover:bg-gray-300 text-sm font-medium"}
+                        {do $iterator->next()}
+                    {/while}
+                </div>
+            {/if}
+
+			{* Error message or description *}
+            <p class="text-sm text-red-600 mt-1" n:ifcontent>{$control->error}</p>
+            <p class="text-sm text-gray-500 mt-1" n:ifcontent>{$control->getOption(description)}</p>
+        </div>
+    </div>
+{/define}
+
+
+{define local control, Nette\Forms\Controls\BaseControl $control}
+    {if $control->getOption(type) in [text, select, textarea, datetime, file]}
+        {input $control class => "block w-full border border-gray-300 rounded-md shadow-sm p-2 text-sm focus:ring focus:ring-blue-200"}
+
+    {elseif $control->getOption(type) === button}
+        {input $control class => "px-4 py-2 rounded-md bg-blue-600 text-white hover:bg-blue-700 text-sm font-medium"}
+
+    {elseif $control->getOption(type) in [checkbox, radio]}
+        {var $items = $control instanceof Nette\Forms\Controls\Checkbox ? [''] : $control->getItems()}
+        <div class="space-y-2" n:foreach="$items as $key => $foo">
+            <label class="inline-flex items-center">
+                {input $control:$key class => "form-checkbox text-blue-600"}
+                <span class="ml-2">{label $control:$key /}</span>
+            </label>
+        </div>
+
+    {elseif $control->getOption(type) === color}
+        {input $control class => "w-12 h-8 p-0 border border-gray-300 rounded"}
+
+    {else}
+        {input $control}
+    {/if}
+{/define}
